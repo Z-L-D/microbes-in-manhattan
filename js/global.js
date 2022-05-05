@@ -16,6 +16,12 @@ function initialize_structure(){
     page_2_section_a = document.getElementById('page_2_section_a');
     page_2_section_b = document.getElementById('page_2_section_b');
     page_2_section_c = document.getElementById('page_2_section_c');
+    page_2_section_a_title = document.getElementById('page_2_section_a_title');
+    page_2_section_b_title = document.getElementById('page_2_section_b_title');
+    page_2_section_c_title = document.getElementById('page_2_section_c_title');
+    page_2_section_a_content = document.getElementById('page_2_section_a_content');
+    page_2_section_b_content = document.getElementById('page_2_section_b_content');
+    page_2_section_c_content = document.getElementById('page_2_section_c_content');
     initialize_page_2();
 }
 
