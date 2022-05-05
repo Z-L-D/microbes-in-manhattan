@@ -4,7 +4,7 @@ function initialize_page_2(){
     
     page_2_return_button.addEventListener('click', reset_structure, true);
 
-    page_2_section_a.addEventListener('click', function(){
+    page_2_section_a_title.addEventListener('click', function(){
         // section A
         page_2_section_a.classList.remove('active_section');
         page_2_section_a.classList.remove('hidden_button');
@@ -26,9 +26,26 @@ function initialize_page_2(){
 
         slide_index = 1;
         show_slides(slide_index, "page_2_section_a_slide");
+
+        page_2_section_a.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        })
+        
+        page_2_section_a.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            swipe_gesture("page_2_section_a_slide");
+        });
+    
+        page_2_section_a_prev_button.addEventListener('click', function(){
+            plus_slides(-1, 'page_2_section_a_slide');
+        });
+    
+        page_2_section_a_next_button.addEventListener('click', function(){
+            plus_slides(1, 'page_2_section_a_slide');
+        });
     });
 
-    page_2_section_b.addEventListener('click', function(){
+    page_2_section_b_title.addEventListener('click', function(){
         // section A
         page_2_section_a.classList.remove('active_section');
         page_2_section_a.classList.add('hidden_button');
@@ -50,9 +67,26 @@ function initialize_page_2(){
 
         slide_index = 1;
         show_slides(slide_index, "page_2_section_b_slide");
+
+        page_2_section_b.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        })
+        
+        page_2_section_b.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            swipe_gesture("page_2_section_b_slide");
+        });
+    
+        page_2_section_b_prev_button.addEventListener('click', function(){
+            plus_slides(-1, 'page_2_section_b_slide');
+        });
+    
+        page_2_section_b_next_button.addEventListener('click', function(){
+            plus_slides(1, 'page_2_section_b_slide');
+        });
     });
 
-    page_2_section_c.addEventListener('click', function(){
+    page_2_section_c_title.addEventListener('click', function(){
         // section A
         page_2_section_a.classList.remove('active_section');
         page_2_section_a.classList.add('hidden_button');
@@ -74,33 +108,23 @@ function initialize_page_2(){
 
         slide_index = 1;
         show_slides(slide_index, "page_2_section_c_slide");
-    });
 
-    page_2_section_a.addEventListener('touchstart', e => {
-        touchstartX = e.changedTouches[0].screenX;
-    })
+        page_2_section_c.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        })
+        
+        page_2_section_c.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            swipe_gesture("page_2_section_c_slide");
+        });
     
-    page_2_section_a.addEventListener('touchend', e => {
-        touchendX = e.changedTouches[0].screenX;
-        swipe_gesture("page_2_section_a_slide");
-    });
-
-    page_2_section_b.addEventListener('touchstart', e => {
-        touchstartX = e.changedTouches[0].screenX;
-    })
+        page_2_section_c_prev_button.addEventListener('click', function(){
+            plus_slides(-1, 'page_2_section_c_slide');
+        });
     
-    page_2_section_b.addEventListener('touchend', e => {
-        touchendX = e.changedTouches[0].screenX;
-        swipe_gesture("page_2_section_b_slide");
-    });
-
-    page_2_section_c.addEventListener('touchstart', e => {
-        touchstartX = e.changedTouches[0].screenX;
-    })
-    
-    page_2_section_c.addEventListener('touchend', e => {
-        touchendX = e.changedTouches[0].screenX;
-        swipe_gesture("page_2_section_c_slide");
+        page_2_section_c_next_button.addEventListener('mousedown', function(){
+            plus_slides(1, 'page_2_section_c_slide');
+        });
     });
 };
 
@@ -130,10 +154,7 @@ function reset_page_2_structure(){
 
 function plus_slides(n, section) {
     show_slides(slide_index += n, section);
-}
-
-function current_slide(n, section) {
-    show_slides(slide_index = n, section);
+    console.log(slide_index)
 }
 
 function show_slides(n, section) {

@@ -16,18 +16,27 @@
 .page_2_section_container
 .page_2_section_a_title{
     display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .page_2
 .page_2_section_container
 .page_2_section_b_title{
     display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .page_2
 .page_2_section_container
 .page_2_section_c_title{
     display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .page_2

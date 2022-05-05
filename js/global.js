@@ -22,7 +22,12 @@ function initialize_structure(){
     page_2_section_a_content = document.getElementById('page_2_section_a_content');
     page_2_section_b_content = document.getElementById('page_2_section_b_content');
     page_2_section_c_content = document.getElementById('page_2_section_c_content');
-    // page_2_swipe = document.getElementById('page_2_swipe');
+    page_2_section_a_prev_button = document.getElementById('page_2_section_a_prev_button');
+    page_2_section_b_prev_button = document.getElementById('page_2_section_b_prev_button');
+    page_2_section_c_prev_button = document.getElementById('page_2_section_c_prev_button');
+    page_2_section_a_next_button = document.getElementById('page_2_section_a_next_button');
+    page_2_section_b_next_button = document.getElementById('page_2_section_b_next_button');
+    page_2_section_c_next_button = document.getElementById('page_2_section_c_next_button');
     initialize_page_2();
 }
 
@@ -42,10 +47,12 @@ let touchstartX = 0;
 let touchendX = 0;
 
 function swipe_gesture(section) {
-    if (touchendX < touchstartX){
-        plus_slides(1, section);
-    } 
-    if (touchendX > touchstartX){
-        plus_slides(-1, section);
-    };
+    if(touchendX - touchstartX > 100 || touchstartX - touchendX > 100){
+        if(touchendX < touchstartX){
+            plus_slides(1, section);
+        } 
+        if(touchendX > touchstartX){
+            plus_slides(-1, section);
+        };
+    }
 };
