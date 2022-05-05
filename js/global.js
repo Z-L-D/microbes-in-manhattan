@@ -22,6 +22,7 @@ function initialize_structure(){
     page_2_section_a_content = document.getElementById('page_2_section_a_content');
     page_2_section_b_content = document.getElementById('page_2_section_b_content');
     page_2_section_c_content = document.getElementById('page_2_section_c_content');
+    // page_2_swipe = document.getElementById('page_2_swipe');
     initialize_page_2();
 }
 
@@ -37,3 +38,14 @@ function reset_structure(){
     page_2_section_c.classList.remove('active_section');
 }
 
+let touchstartX = 0;
+let touchendX = 0;
+
+function swipe_gesture(section) {
+    if (touchendX < touchstartX){
+        plus_slides(1, section);
+    } 
+    if (touchendX > touchstartX){
+        plus_slides(-1, section);
+    };
+};
