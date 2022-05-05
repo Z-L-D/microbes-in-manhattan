@@ -9,6 +9,50 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#577caf', endColorstr='#324154', GradientType=0 );
 }
 
+.blue_dropshadow{
+    -webkit-box-shadow: 10px 10px 85px -11px rgba(11,45,194,1);
+    -moz-box-shadow: 10px 10px 85px -11px rgba(11,45,194,1);
+    box-shadow: 10px 10px 85px -11px rgba(11,45,194,1);
+}
+
 .blue_gradient_1{
-    
+    background: rgba(31,162,255,1);
+    background: -moz-linear-gradient(top, rgba(31,162,255,1) 0%, rgba(30,83,255,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(31,162,255,1)), color-stop(100%, rgba(30,83,255,1)));
+    background: -webkit-linear-gradient(top, rgba(31,162,255,1) 0%, rgba(30,83,255,1) 100%);
+    background: -o-linear-gradient(top, rgba(31,162,255,1) 0%, rgba(30,83,255,1) 100%);
+    background: -ms-linear-gradient(top, rgba(31,162,255,1) 0%, rgba(30,83,255,1) 100%);
+    background: linear-gradient(to bottom, rgba(31,162,255,1) 0%, rgba(30,83,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1fa2ff', endColorstr='#1e53ff', GradientType=0 );
+}
+
+.orange_gradient_0{
+    background: rgba(255,158,2,1);
+    background: -moz-linear-gradient(-45deg, rgba(255,158,2,1) 0%, rgba(255,72,5,1) 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(255,158,2,1)), color-stop(100%, rgba(255,72,5,1)));
+    background: -webkit-linear-gradient(-45deg, rgba(255,158,2,1) 0%, rgba(255,72,5,1) 100%);
+    background: -o-linear-gradient(-45deg, rgba(255,158,2,1) 0%, rgba(255,72,5,1) 100%);
+    background: -ms-linear-gradient(-45deg, rgba(255,158,2,1) 0%, rgba(255,72,5,1) 100%);
+    background: linear-gradient(135deg, rgba(255,158,2,1) 0%, rgba(255,72,5,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9e02', endColorstr='#ff4805', GradientType=1 );
+}
+
+.yellow_0{
+    background: #f5eb7b;
+}
+
+.orange_0{
+    background: #deb05a;
+}
+
+.red_0{
+    background: #d5765a;
+}
+
+.font_white{
+    color: white;
+}
+
+.font_grey{
+    color: #4b4b4b;
 }
