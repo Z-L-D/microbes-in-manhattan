@@ -50,9 +50,23 @@
 
 .page_2
 .page_2_section_container
+.active_section{
+    width: 70vw;
+    height: calc(70vw * .5625);
+}
+
+.page_2
+.page_2_section_container
+.active_section
 .active_content{
-    width: 80vw;
-    height: 80vh;
+    display: block;
+}
+
+.page_2
+.page_2_section_container
+.active_section
+.hidden_title{
+    display: none;
 }
 
 .page_2
@@ -64,5 +78,4 @@
     margin: 0px;
     font-size: 0px;
     opacity: 0;
-    /* display: none; */
 }

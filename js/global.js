@@ -26,14 +26,14 @@ function initialize_structure(){
 }
 
 function reset_structure(){
-    page_0.style.display = "block";
-    page_1.style.display = "none";
-    page_2.style.display = "none";
-    page_2_section_a.classList.remove("hidden_button");
-    page_2_section_b.classList.remove("hidden_button");
-    page_2_section_c.classList.remove("hidden_button");
-    page_2_section_a.classList.remove("active_content");
-    page_2_section_b.classList.remove("active_content");
-    page_2_section_c.classList.remove("active_content");
+    page_0.style.display = 'block';
+    page_1.style.display = 'none';
+    page_2.style.display = 'none';
+    page_2_section_a.classList.remove('hidden_button');
+    page_2_section_b.classList.remove('hidden_button');
+    page_2_section_c.classList.remove('hidden_button');
+    page_2_section_a.classList.remove('active_section');
+    page_2_section_b.classList.remove('active_section');
+    page_2_section_c.classList.remove('active_section');
 }
 
