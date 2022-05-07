@@ -1,3 +1,35 @@
+@font-face {
+    font-family: TrajanPro-Regular;
+    src: url(TrajanPro-Regular.otf);
+}
+
+@font-face {
+    font-family: Oswald-ExtraLight;
+    src: url(Oswald-ExtraLight.ttf);
+}
+
+@font-face {
+    font-family: Oswald-Extra-LightItalic;
+    src: url(Oswald-Extra-LightItalic.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-ExtraBold;
+    src: url(Montserrat-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: TrajanPro-Regular;
+    src: url(TrajanPro-Regular.otf);
+}
+
+
+
 .main{
     position:absolute;
     left: 0px;
