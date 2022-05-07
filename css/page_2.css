@@ -44,7 +44,7 @@
         .page_2_section_container
         .page_2_section_a_content{
             display: none;
-            position: relative;
+            position: absolute;
             left: 0px;
             top: 0px;
         }
@@ -53,12 +53,18 @@
         .page_2_section_container
         .page_2_section_b_content{
             display: none;
+            position: absolute;
+            left: 0px;
+            top: 0px;
         }
 
         .page_2
         .page_2_section_container
         .page_2_section_c_content{
             display: none;
+            position: absolute;
+            left: 0px;
+            top: 0px;
         }
 
         .page_2
@@ -67,6 +73,7 @@
             width: 70vw;
             height: calc(70vw * .5625);
             overflow: hidden;
+            position: relative;
         }
 
         .page_2
@@ -107,6 +114,21 @@
                 right: 0px;
                 display: flex;
                 justify-content: flex-end;
+                margin: 20px;
+            }
+
+            .page_2
+            .slideshow_container
+            .slider_controls_container
+            .slider_controls_prev{
+                margin-right: 10px;
+            }
+
+            .page_2
+            .slideshow_container
+            .slider_controls_container
+            .slider_controls_next{
+                margin-left: 10px;
             }
 
             .page_2
