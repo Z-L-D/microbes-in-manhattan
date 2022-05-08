@@ -136,3 +136,16 @@
             svg{
                 width: 70vw;
             }
+
+            .page_2
+            .slideshow_container
+            img{
+                width: 70vw;
+            }
+
+            .page_2
+            .slideshow_container
+            object{
+                width: 70vw;
+                pointer-events: none;
+            }
