@@ -70,8 +70,8 @@
         .page_2
         .page_2_section_container
         .active_section{
-            width: 70vw;
-            height: calc(70vw * .5625);
+            width: 75vw;
+            height: calc(75vw * .5625);
             overflow: hidden;
             position: relative;
         }
@@ -134,18 +134,18 @@
             .page_2
             .slideshow_container
             svg{
-                width: 70vw;
+                width: 75vw;
             }
 
             .page_2
             .slideshow_container
             img{
-                width: 70vw;
+                width: 75vw;
             }
 
             .page_2
             .slideshow_container
             object{
-                width: 70vw;
+                width: 75vw;
                 pointer-events: none;
             }
