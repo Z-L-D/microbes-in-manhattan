@@ -147,5 +147,5 @@
             .slideshow_container
             object{
                 width: 75vw;
-                pointer-events: none;
+                /* pointer-events: none; */
             }
