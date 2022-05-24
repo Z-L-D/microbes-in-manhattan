@@ -55,7 +55,13 @@ function initialize_page_2(){
         svgDoc.getElementById('panel_000_image').addEventListener('click', function(){
             alert('clicked image');
         });
+
+        svgDoc.getElementById('slide_0').addEventListener('click', function(){
+            alert('clicked slide');
+        });
     });
+
+    
 
     page_2_section_a_slide_1_svg.addEventListener('load', function(){
         var svgDoc = page_2_section_a_slide_1_svg.contentDocument;
