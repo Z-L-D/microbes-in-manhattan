@@ -19,7 +19,7 @@
 <g id="panel_x5F_004_x5F_side">
 	<g id="panel_x5F_004_x5F_side_x5F_image">
 		
-			<image overflow="visible" width="737" height="1080" xlink:href="panel_004_image_0.png"  transform="matrix(0.9335 0 0 0.9335 1192 35.9023)">
+			<image id="panel_000_image_000" overflow="visible" width="737" height="1080" xlink:href="panel_004_image_0.png"  transform="matrix(0.9335 0 0 0.9335 1192 35.9023)">
 		</image>
 	</g>
 </g>
@@ -39,7 +39,7 @@
 			</clipPath>
 			<g clip-path="url(#SVGID_2_)">
 				
-					<image overflow="visible" width="970" height="1080" xlink:href="panel_004_image_1.png"  transform="matrix(0.3167 0 0 0.3167 127 515)">
+					<image id="panel_000_image_001" overflow="visible" width="970" height="1080" xlink:href="panel_004_image_1.png"  transform="matrix(0.3167 0 0 0.3167 127 515)">
 				</image>
 			</g>
 		</g>

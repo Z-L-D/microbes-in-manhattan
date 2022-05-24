@@ -4161,7 +4161,7 @@
 			</clipPath>
 			<g transform="matrix(1 0 0 1 0 0)" clip-path="url(#SVGID_2_)">
 				
-					<image overflow="visible" width="1451" height="1080" xlink:href="panel_005_image.png"  transform="matrix(0.1954 0 0 0.1954 930 552)">
+					<image id="panel_000_image" overflow="visible" width="1451" height="1080" xlink:href="panel_005_image.png"  transform="matrix(0.1954 0 0 0.1954 930 552)">
 				</image>
 			</g>
 		</g>

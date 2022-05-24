@@ -61,8 +61,6 @@ function initialize_page_2(){
         });
     });
 
-    
-
     page_2_section_a_slide_1_svg.addEventListener('load', function(){
         var svgDoc = page_2_section_a_slide_1_svg.contentDocument;
     
