@@ -12,7 +12,10 @@
 <link rel="icon" href="art/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/montserrat-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/cinzel-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<style>/* ============ Fonts (self-hosted, latin subsets) ============ */
+<style>/* until the router has picked a view, show none: browsers that paint while parsing (Firefox) would otherwise stack every view and panel */
+.js:not(.routed) .view { display: none; }
+
+/* ============ Fonts (self-hosted, latin subsets) ============ */
 @font-face { font-family: Cinzel; src: url(fonts/cinzel-latin-400-normal.woff2) format('woff2'); font-weight: 400; font-display: swap; }
 @font-face { font-family: Cinzel; src: url(fonts/cinzel-latin-600-normal.woff2) format('woff2'); font-weight: 600; font-display: swap; }
 @font-face { font-family: Montserrat; src: url(fonts/montserrat-latin-300-normal.woff2) format('woff2'); font-weight: 300; font-display: swap; }
@@ -95,7 +98,7 @@ body[data-view='/'] .tabs { visibility: hidden; }
 .view { padding-top: var(--top); }
 
 /* ---- Home ---- */
-.view-home { position: relative; min-height: 100vh; min-height: 100dvh; overflow: hidden;
+.view-home { position: relative; box-sizing: border-box; min-height: 100vh; min-height: 100dvh; overflow: hidden;
   background: radial-gradient(120% 80% at 20% 0%, #33405c 0%, var(--ink) 60%); }
 .home-crowd { position: absolute; inset: auto 0 0 0; height: 55%; pointer-events: none; }
 .home-crowd svg { width: 100%; height: 100%; }
@@ -123,6 +126,25 @@ body[data-view='/'] .tabs { visibility: hidden; }
 .story-card .kicker { margin: 0; color: #f1e27a; opacity: 1; }
 .story-card.is-soon img { filter: grayscale(1) brightness(.7); }
 .story-card.is-soon .kicker { color: #cfd3dc; }
+/* Large landscape screens (the kiosk): everything on one screen, the four stories in a row.
+   Sizes follow the screen height (1em is about 1/68 of it), so a 1440p or 4K screen looks the same as 1080p. */
+@media (min-width: 1500px) and (min-height: 860px) and (min-aspect-ratio: 4/3) {
+  .view-home { height: 100vh; height: 100dvh; font-size: clamp(14px, 1.48vh, 34px); }
+  .home-inner { box-sizing: border-box; height: 100%; max-width: min(92vw, 172vh); display: flex; flex-direction: column;
+    padding: 5.5em 2em 4em; }
+  .home-head { max-width: 46em; margin-bottom: 3em; }
+  .view-home .kicker { font-size: .78em; }
+  .view-home .display { font-size: 5em; }
+  .home-tagline { font-size: 1.2em; max-width: 38em; }
+  .story-cards { flex: 1; min-height: 0; grid-template-columns: repeat(4, 1fr); gap: 1.4em; }
+  .story-card { aspect-ratio: auto; height: 100%; min-height: 0; border-radius: 1.1em; }
+  .story-card::after { background: linear-gradient(180deg, rgb(20 25 37 / 0) 10%, rgb(20 25 37 / .7) 34%, rgb(20 25 37 / .94) 52%, rgb(20 25 37 / .97) 100%); }
+  .story-card-text { padding: 2em; gap: .3em; }
+  .story-card-title { font-size: 2.2em; }
+  .story-card-sub { font-size: 1.25em; }
+  .story-card-blurb { font-size: 1.05em; max-width: none; }
+}
+}
 
 /* ---- Story landing ---- */
 .view-story { min-height: 100vh; background: linear-gradient(180deg, #232a3b, var(--ink)); }
@@ -151,6 +173,8 @@ body[data-view='/'] .tabs { visibility: hidden; }
 /* ============ Chapter viewer ============ */
 .js .view-chapter { position: fixed; inset: 0; display: grid; grid-template-rows: 1fr var(--pager); padding-top: var(--top); }
 .stage { position: relative; overflow: hidden; container-type: size; outline: none; background: #111; touch-action: pan-y; }
+/* every scroller inside a panel too: touch-action does not reach past a scroll container, and an "auto" one lets the browser take a sideways drag */
+.stage * { touch-action: pan-y pinch-zoom; }
 
 .panel {
   --u: min(1cqw, 1.7778cqh);
@@ -1571,6 +1595,7 @@ body[data-story='vaccines'] .ex-other.to-vax, body:not([data-story='vaccines']) 
     const { path, panel } = parse();
     const view = views.find((v) => v.dataset.view === path) || views[0];
     views.forEach((v) => (v.hidden = v !== view));
+    document.documentElement.classList.add('routed');
     document.body.dataset.view = view.dataset.view;
     const story = view.dataset.story || '';
     document.body.dataset.story = story;
@@ -1933,18 +1958,29 @@ body[data-story='vaccines'] .ex-other.to-vax, body:not([data-story='vaccines']) 
     }
   });
 
-  // Swipe between panels (touch and pen); vertical movement is left to scrolling.
+  // Swipe between panels. Touch uses touch events, which still deliver touchend after the browser
+  // has started a scroll (Firefox cancels the pointer stream as soon as a scrollable panel moves);
+  // pen uses pointer events. Vertical movement is left to scrolling.
   let sx = 0, sy = 0, st = 0, tracking = false;
-  document.addEventListener('pointerdown', (e) => {
-    if (!current || e.pointerType === 'mouse' || !e.target.closest('.stage')) return;
-    tracking = true; sx = e.clientX; sy = e.clientY; st = e.timeStamp;
-  }, { passive: true });
-  document.addEventListener('pointerup', (e) => {
+  const startSwipe = (x, y, t, target) => {
+    tracking = !!current && !!target.closest('.stage') && !target.closest('.lightbox, dialog');
+    sx = x; sy = y; st = t;
+  };
+  const endSwipe = (x, y, t) => {
     if (!tracking) return; tracking = false;
-    const dx = e.clientX - sx, dy = e.clientY - sy;
-    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.6 && e.timeStamp - st < 900) step(dx < 0 ? 1 : -1);
+    const dx = x - sx, dy = y - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.6 && t - st < 900) step(dx < 0 ? 1 : -1);
+  };
+  document.addEventListener('touchstart', (e) => {
+    if (e.touches.length !== 1) { tracking = false; return; }
+    const t = e.touches[0]; startSwipe(t.clientX, t.clientY, e.timeStamp, e.target);
   }, { passive: true });
-  document.addEventListener('pointercancel', () => (tracking = false));
+  document.addEventListener('touchend', (e) => {
+    const t = e.changedTouches[0]; if (t) endSwipe(t.clientX, t.clientY, e.timeStamp);
+  }, { passive: true });
+  document.addEventListener('touchcancel', () => (tracking = false), { passive: true });
+  document.addEventListener('pointerdown', (e) => { if (e.pointerType === 'pen') startSwipe(e.clientX, e.clientY, e.timeStamp, e.target); }, { passive: true });
+  document.addEventListener('pointerup', (e) => { if (e.pointerType === 'pen') endSwipe(e.clientX, e.clientY, e.timeStamp); }, { passive: true });
 
   // Double-tap / double-click on the photograph itself toggles photo mode (as on the original kiosk).
   document.addEventListener('dblclick', (e) => {
